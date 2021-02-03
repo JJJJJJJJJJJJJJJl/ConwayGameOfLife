@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GameOfLife</title>
+        <link rel="stylesheet" href="board.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue">
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Conway's Game Of Life</h1>
+        </div>
+        <div class="menu">
+            <a class="button" onclick="run()" id="run">Run</a>
+            <a class="button" onclick="stop()" id="stop">Stop</a>
+            <a class="button" onclick="reset()" id="reset">Reset</a>
+        </div>
+        <div class="board">
+            <table id="petri"></table>
+        </div>
+        <script type="text/javascript" src="game.js"></script>
+    </body>
+</html>
