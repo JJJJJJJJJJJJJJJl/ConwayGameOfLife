@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>GameOfLife</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="icon" href="http://www.playboicarti.com/sites/g/files/aaj12406/f/favicon_4.jpg" type="image/icon">
         <link rel="stylesheet" href="board.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue">
@@ -11,13 +13,16 @@
         <div class="header">
             <h1>Conway's Game Of Life</h1>
         </div>
-        <div class="menu">
-            <a class="button" onclick="run()" id="run">Run</a>
-            <a class="button" onclick="stop()" id="stop">Stop</a>
-            <a class="button" onclick="reset()" id="reset">Reset</a>
-        </div>
-        <div class="board">
-            <table id="petri"></table>
+        <div class="wrap">
+            <div class="menu">
+                <a class="button" onclick="run()" id="run">Run</a>
+                <a class="button" onclick="stop()" id="stop">Stop</a>
+                <a class="button" onclick="reset()" id="reset">Reset</a>
+                <a class="button" onclick="random()" id="random">Random</a>
+            </div>
+            <div class="board">
+                <table id="petri"></table>
+            </div>
         </div>
         <script type="text/javascript" src="game.js"></script>
     </body>

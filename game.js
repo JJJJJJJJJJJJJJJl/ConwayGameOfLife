@@ -132,5 +132,20 @@ function reset(){
     }
 }
 
+function random(){
+    reset();
+    for(var i=0; i<petridish.length; i++){
+        for(var j=0; j<petridish[i].length; j++){
+            rand = Math.random();
+            cell = document.getElementById(""+i+","+j);
+            if(cell.className == 'alive') continue;
+            if(rand > 0.5){
+                cell.className = 'alive';
+                petridish[i][j] = 1;
+            }
+        }
+    }
+}
+
 memset();
 createTable();
