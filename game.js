@@ -1,6 +1,8 @@
-const ROWS = 24;
+const ROWS = 25;
 const COLS = 50;
 var on = 0;
+var dirx = [0,0,1,-1,-1,-1,1,1]
+var diry = [-1,1,0,0,-1,1,-1,1]
 
 //Sleep Function
 function sleep(ms){
@@ -49,16 +51,11 @@ function calculate_nextgen(){
     for(var i=0; i<petridish.length; i++){
         for(var j=0; j<petridish[i].length; j++){
             var neighbours = 0;
-            //i KNOW THIS IS PRETTY SPAGHETTI..ARRAY OF DIRECTIONS WOULD BE MUCH CLEANER IK IK.
-            if(i - 1 > -1 && petridish[i-1][j] == 1) neighbours++; 
-            if(i + 1 < ROWS && petridish[i+1][j] == 1) neighbours++;
-            if(j - 1 > -1 && petridish[i][j-1] == 1) neighbours++;
-            if(j + 1 < COLS && petridish[i][j+1] == 1) neighbours++;
-            if(i - 1 > -1 && j - 1 > -1 && petridish[i-1][j-1] == 1) neighbours++;
-            if(i - 1 > -1 && j + 1 < COLS && petridish[i-1][j+1] == 1) neighbours++;
-            if(i + 1 < ROWS && j + 1 < COLS && petridish[i+1][j+1] == 1) neighbours++;
-            if(i + 1 < ROWS && j - 1 > -1 && petridish[i+1][j-1] == 1) neighbours++;
-
+            for(var k=0; k<dirx.length; k++){
+                var row = i + diry[k];
+                var col = j + dirx[k];
+                if(row > -1 && row < ROWS && col > -1 && col < COLS && petridish[row][col] == 1) neighbours++;
+            }
             if(petridish[i][j] == 1){
                 if(neighbours == 2 || neighbours == 3) petridishhood[i][j] = 1;
                 else petridishhood[i][j] = 0;
@@ -106,9 +103,23 @@ async function set(id){
     }
 }
 
-//Starts reproduction ('async' must be defined so javascript wont act like javascript)
+//Switch button innerHTML
+function buttonHTML(){
+    var state = document.getElementById("run");
+    if(state.innerHTML == "Run") state.innerHTML = "Stop";
+    else state.innerHTML = "Run";
+}
+
+//Switch 'on' 0/1
+function onSwitch(){
+    if(on == 1) on = 0;
+    else on = 1;
+}
+
+//Starts/Stop reproduction
 async function run(){
-    on = 1;
+    buttonHTML();
+    onSwitch();
     while(on == 1){
         calculate_nextgen();
         await sleep(50);
@@ -117,21 +128,19 @@ async function run(){
     }
 }
 
-//Stop reproduction
-function stop(){
-    on = 0;
-}
-
 //Resets everything
 function reset(){
-    for(var i=0; i<petridish.length; i++){
-        for(var j=0; j<petridish[i].length; j++){
-            petridish[i][j] = 0;
-            document.getElementById(""+i+","+j).className = "dead";
+    if(on == 0){ 
+        for(var i=0; i<petridish.length; i++){
+            for(var j=0; j<petridish[i].length; j++){
+                petridish[i][j] = 0;
+                document.getElementById(""+i+","+j).className = "dead";
+            }
         }
     }
 }
 
+//Generate random living cells
 function random(){
     reset();
     for(var i=0; i<petridish.length; i++){
@@ -145,6 +154,20 @@ function random(){
             }
         }
     }
+}
+
+//Gosper Glider Gun
+var gosperglidergun = () =>{
+    reset();
+                                                                                                                                                set("5,31")
+                                                                                                                            set("6,29");    set("6,31");
+                                            set("7,19");set("7,20");                                        set("7,27");set("7,28");                                 set("7,41");set("7,42");
+                                        set("8,18");             set("8,22");                               set("8,27");set("8,28");                                 set("8,41");set("8,42");
+    set("9,7");set("9,8");          set("9,17");                          set("9,23");                      set("9,27");set("9,28");
+    set("10,7");set("10,8");        set("10,17");            set("10,21");set("10,23");set("10,24");                        set("10,29");   set("10,31");
+                                    set("11,17");                         set("11,23");                                                         set("11,31");
+                                        set("12,18");            set("12,22");
+                                            set("13,19");set("13,20");
 }
 
 memset();
