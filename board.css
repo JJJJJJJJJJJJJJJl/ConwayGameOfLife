@@ -4,15 +4,15 @@ body{
 
 .header h1{
     text-align: center;
-    color: red;
-    font-family: 'Bebas Neue';
-    font-size: 50px;
+    color: white;
+    font-family: "Doto";
+    font-size: 10rem;
     font-weight: 600;
     padding: 0;
 }
 
 .wrap{
-    margin-top: 2%;
+    margin-top: 4%;
     max-height: 100%;
     max-width: 100%;
 }
@@ -27,19 +27,26 @@ body{
     text-align: center;
     font-family: 'Bebas Neue';
     font-size: 25px;
-    border: 0;
+    border: 1px solid #ffffff;
     padding: 10px;
-    background-color: red;
+    border-color: white;
     outline: none;
     cursor: pointer;
     position: relative;
     z-index: 0;
     text-decoration: none;
-    color: black;
+    color: white;
+    box-shadow: 0 6px 0 #49574a, 0 8px 10px #49574a;
+    transition: transform 0.1s ease, box-shadow 0.1s ease; 
+}
+
+.button:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #49574a, 0 6px 8px #49574a;
 }
 
 a:hover{
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
@@ -49,7 +56,7 @@ a:hover{
 
 .button:not(:last-child):before{
     content: '';
-    background: linear-gradient(45deg, #ff0000, #ff0000);
+    /* background: linear-gradient(45deg, #ff0000, #ff0000); */
     position: absolute;
     top: -2px;
     left:-2px;
@@ -108,7 +115,7 @@ a:hover{
     justify-content: center;
     border-collapse: collapse;
     border-style: dashed;
-    border-color: red;
+    border-color: white;
     margin-top: 30px;
     margin-left: 15.35%;
     margin-right: 18.5%;
@@ -117,6 +124,19 @@ a:hover{
 /* #petri{
     justify-content: center;
 } */
+
+.petriw {
+    display: flex;
+    flex-direction: column;
+}
+
+.petriw p {
+    margin-top: 1%;
+    margin-left: 15.35%;
+    margin-right: 18.5%;
+    color: white;
+    text-align: right;
+}
 
 .board td{
     height: 25px;
@@ -129,7 +149,7 @@ a:hover{
 }
 
 .alive{
-    background-color: red;
+    background-color: white;
     transition: transform;
     animation: rot2 1s ease-in-out ;
 }
@@ -163,8 +183,8 @@ a:hover{
     font-size: 20px;
     margin-left: 15.35%;
     margin-right: 18.5%;
-    margin-top: 20px;
-    color: red;
+    margin-top: 5%;
+    color: white;
 }
 
 #rules_header{
@@ -181,7 +201,7 @@ a:hover{
 
 footer{
     background-color: black;
-    color: red;
+    color: white;
     text-align: center;
     font-size: 30px;
     font-family: "Bebas Neue";
